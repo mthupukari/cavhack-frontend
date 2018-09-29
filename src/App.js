@@ -5,19 +5,56 @@ import { Navbar, NavItem, Nav } from 'react-bootstrap'
 
 import MyProfileContainer from './containers/MyProfileContainer'
 import AllProfilesContainer from './containers/AllProfilesContainer'
+import College from './containers/College'
+import Grades from './containers/Grades'
+import "./index.css"
 
 class App extends Component {
   constructor(props) {
     super(props)
+    this.state={ready:false}
 
     // set title of the webpage when component is created
     document.title = 'My Profile'
   }
-
-  render() {
+  onChange(){
+    alert("hello")
+    this.setState({
+      ready: true
+    });
+  }
+  getProfile(){
     return (
       <div>
         {/* ! ADD NAVBAR HERE */}
+        <Navbar>
+          <Navbar.Header>
+            <Navbar.Brand>
+              Gradebook
+            </Navbar.Brand>
+          </Navbar.Header>
+          <Nav>
+          <NavItem href="/">
+              Home
+            </NavItem>
+            <NavItem href="/grades">
+              Grades
+            </NavItem>
+            {/* <NavItem href="/schedule">
+              Schedule
+            </NavItem> */}
+            
+            <NavItem href="/college">
+              College
+            </NavItem>
+          </Nav>
+        </Navbar>
+        
+          <form>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; School Id:  
+            <input onChange={this.onChange.bind(this) }type = "text" name = "id"></input>
+            
+          </form> 
 
 
         {/* router to navigate between pages, each page is a container */}
@@ -25,17 +62,32 @@ class App extends Component {
           <Route exact
             path="/"
             render={() => (
-              <MyProfileContainer history={this.props.history} />
+              <MyProfileContainer show={this.state.ready} history={this.props.history} />
             )}
           />
-          <Route path="/profiles"
+          <Route path="/grades"
             render={() => (
-              <AllProfilesContainer history={this.props.history} />
+              <Grades history={this.props.history} />
+            )}
+          />
+          {/* <Route exact
+            path="/gpa"
+            render={() => (
+              <MyProfileContainer history={this.props.history} />
+            )}
+          /> */}
+          <Route exact
+            path="/college"
+            render={() => (
+              <College history={this.props.history} />
             )}
           />
         </Switch>
       </div>
     );
+  }
+  render() {
+    return this.getProfile();
   }
 }
 

@@ -39,16 +39,28 @@ class MyProfileContainer extends Component {
   handleAddSubmit() {}
 
   render() {
+    if(this.props.show){
+
     return (
       <div>
         <Grid>
           <Row className="show-grid valign-wrapper">
             <Col xs={12} md={8} lg={4}>
               {/* ADD PROFILE IMAGE HERE */}
+              <Image src ="https://lh3.googleusercontent.com/-rSUmFNMn6n0/AAAAAAAAAAI/AAAAAAAABWw/eG__o13y0TA/s640-il/photo.jpg" thumbnail />
             </Col>
             <Col xs={12} md={4} lg={8}>
               {/* ADD PAGE HEADER WITH NAME AND ABOUT ME HEADINGS HERE */}
+              <PageHeader>
+                Satwik Tadikamalla 
+                {/* <br />Mahit <br />Thupukari
+                <br />
+                <br />
+                Saumith Gundapuneedi
+                <br /> */}
 
+                 </PageHeader>
+                 
               {/* ADD ABOUT ME DESCRIPTION HERE */}
 
             </Col>
@@ -59,7 +71,19 @@ class MyProfileContainer extends Component {
             <Col xs={12}>
 
               {/* ADD HEADER FOR SECTION HERE */}
-
+                <PageHeader>
+                  My Interests
+                </PageHeader>
+                <Panel>
+                  <Panel.Body>
+                    <ul>
+                      <li>Coding </li>
+                      <li>Food </li>
+                      <li>Movies</li>
+                      <li>More Food</li>
+                    </ul>
+                  </Panel.Body>
+                </Panel>
               {/* ADD PANEL FOR SECTION INFORMATION WITH LIST HERE */}
 
               {/* ADD BUTTON FOR ADDITIONAL INFORMATION HERE */}
@@ -72,6 +96,10 @@ class MyProfileContainer extends Component {
 
       </div>
     )
+              }
+              else{
+                return "Not Ready"
+              }
   }
 }
 
